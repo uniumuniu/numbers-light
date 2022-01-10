@@ -1,6 +1,5 @@
 package com.example.numberslight.presentation
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -42,21 +41,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun showProperView() {
         when {
             viewModel.error.value != null -> {
-                showErrorOnly()
-            }
-            viewModel.selectedNumber.value != null && isTabletAndLandscape() -> {
-                showListWithDetails()
+                showError()
             }
             viewModel.selectedNumber.value != null -> {
-                showDetailsOnly()
+                showDetails()
             }
             else -> {
-                showListOnly()
+                showList()
             }
         }
     }
 
-    private fun showDetailsOnly() {
+    private fun showDetails() {
         val transaction = supportFragmentManager.beginTransaction()
         hideNumbersListFragment(transaction)
         showNumberDetailFragment(transaction)
@@ -65,7 +61,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         fragmentsVisibility = FragmentsVisibility.DETAILS
     }
 
-    private fun showListOnly() {
+    private fun showList() {
         val transaction = supportFragmentManager.beginTransaction()
         showNumbersListFragment(transaction)
         hideNumberDetailFragment(transaction)
@@ -74,16 +70,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         fragmentsVisibility = FragmentsVisibility.LIST
     }
 
-    private fun showListWithDetails() {
-        val transaction = supportFragmentManager.beginTransaction()
-        showNumbersListFragment(transaction)
-        showNumberDetailFragment(transaction)
-        hideNoConnectionFragment(transaction)
-        transaction.commit()
-        fragmentsVisibility = FragmentsVisibility.LIST_AND_DETAILS
-    }
-
-    private fun showErrorOnly() {
+    private fun showError() {
         val transaction = supportFragmentManager.beginTransaction()
         hideNumbersListFragment(transaction)
         hideNumberDetailFragment(transaction)
@@ -93,27 +80,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        if (fragmentsVisibility == FragmentsVisibility.DETAILS
-            || (fragmentsVisibility == FragmentsVisibility.LIST_AND_DETAILS && isTabletAndLandscape())) {
+        if (fragmentsVisibility == FragmentsVisibility.DETAILS) {
             viewModel.setSelectedNumber(null)
-            showListOnly()
+            showList()
         } else {
             super.onBackPressed()
         }
-    }
-
-    private fun isTablet(): Boolean {
-        return ((resources.configuration.screenLayout
-                and Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE)
-    }
-
-    private fun isLandscape(): Boolean {
-        return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-    }
-
-    private fun isTabletAndLandscape(): Boolean {
-        return isTablet() && isLandscape()
     }
 
     private fun showNumbersListFragment(transaction: FragmentTransaction) {

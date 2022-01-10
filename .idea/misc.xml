@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/drawable/checked_state_set.xml" value="0.34427083333333336" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout-large-land/activity_main.xml" value="0.4511228533685601" />
+        <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout-large-land/fragment_number_detail.xml" value="0.3665097511768662" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout-large-land/item_row.xml" value="0.591015625" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout/activity_main.xml" value="0.41505791505791506" />
+        <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout/details.xml" value="0.5546875" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout/fragment_no_connection.xml" value="0.5546875" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout/fragment_number_detail.xml" value="0.5546875" />
         <entry key="..\:/Projects/NumbersLight/app/src/main/res/layout/fragment_number_list.xml" value="0.540625" />
