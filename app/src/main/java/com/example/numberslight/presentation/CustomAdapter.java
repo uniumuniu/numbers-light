@@ -43,8 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         NumberModel item = data.get(i);
         customViewHolder.itemTextView.setText(item.name);
         customViewHolder.itemView.setOnClickListener(view -> viewModel.setSelectedNumber(item));
-        String correctedUrl = item.image.replace("http", "https");
-        Picasso.get().load(correctedUrl).resize(300, 0).into(customViewHolder.itemImageView);
+        Picasso.get().load(item.image).resize(300, 0).into(customViewHolder.itemImageView);
         CheckableCardView checkableCardView = (CheckableCardView) customViewHolder.itemView;
         checkableCardView.setChecked(selectedNumber != null && selectedNumber.name.equals(item.name));
     }

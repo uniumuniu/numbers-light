@@ -26,8 +26,7 @@ class NumberDetailFragment : Fragment(R.layout.fragment_number_detail) {
         viewModel.numberDetail.observe(requireActivity(), {
             if (it != null) {
                 nameTextView.text = it.name
-                val correctedUrl: String = it.image.replace("http", "https")
-                Picasso.get().load(correctedUrl).resize(800, 0).into(imageView)
+                Picasso.get().load(it.image).resize(800, 0).into(imageView)
                 textTextView.text = it.text
             }
         })
