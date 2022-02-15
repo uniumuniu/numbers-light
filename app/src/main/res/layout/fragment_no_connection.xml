@@ -21,5 +21,4 @@
         android:text="@string/try_again_button_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/errorTextView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

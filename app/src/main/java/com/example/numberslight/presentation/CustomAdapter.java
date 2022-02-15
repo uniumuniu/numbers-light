@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.numberslight.R;
@@ -20,11 +22,11 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
 
     private final Context context;
-    private NumbersViewModel viewModel;
+    private NumbersListViewModel viewModel;
     private List<NumberModel> data;
     private NumberModel selectedNumber;
 
-    public CustomAdapter(Context context, List<NumberModel> data, NumbersViewModel viewModel) {
+    public CustomAdapter(Context context, List<NumberModel> data, NumbersListViewModel viewModel) {
         this.context = context;
         this.data = data;
         this.viewModel = viewModel;
@@ -42,7 +44,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomViewHolder customViewHolder, int i) {
         NumberModel item = data.get(i);
         customViewHolder.itemTextView.setText(item.name);
-        customViewHolder.itemView.setOnClickListener(view -> viewModel.setSelectedNumber(item));
+        customViewHolder.itemView.setOnClickListener(view -> {
+                    viewModel.setSelectedNumber(item);
+                    this.setSelectedNumber(item);
+                    NavDirections action = NumbersListFragmentDirections.Companion.navigateToNumberDetailsFragment(item.name);
+                    Navigation.findNavController(view).navigate(action);
+                }
+        );
         Picasso.get().load(item.image).resize(300, 0).into(customViewHolder.itemImageView);
         CheckableCardView checkableCardView = (CheckableCardView) customViewHolder.itemView;
         checkableCardView.setChecked(selectedNumber != null && selectedNumber.name.equals(item.name));

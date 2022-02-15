@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/numbersListFragment">
+
+    <fragment
+        android:id="@+id/numbersListFragment"
+        android:name="com.example.numberslight.presentation.NumbersListFragment"
+        android:label="fragment_numbers_list"
+        tools:layout="@layout/fragment_numbers_list" >
+        <action
+            android:id="@+id/navigateToNumberDetailsFragment"
+            app:destination="@id/numberDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberDetailsFragment"
+        android:name="com.example.numberslight.presentation.NumberDetailsFragment"
+        android:label="fragment_number_detail"
+        tools:layout="@layout/fragment_number_detail" >
+        <action
+            android:id="@+id/navigateToNumbersListFragment"
+            app:destination="@id/numbersListFragment" />
+        <argument
+            android:name="number"
+            app:argType="string" />
+    </fragment>
+</navigation>

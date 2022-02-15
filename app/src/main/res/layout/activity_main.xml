@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    tools:context=".presentation.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/mainLinearLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:context=".presentation.MainActivity"
-        android:baselineAligned="false">
-
-        <fragment
-            android:name="com.example.numberslight.presentation.NumbersListFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/numbersListFragment" />
-
-        <fragment
-            android:name="com.example.numberslight.presentation.NumberDetailFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/numberDetailFragment" />
-
-        <fragment
-            android:name="com.example.numberslight.presentation.NoConnectionFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/noConnectionFragment" />
-
-    </LinearLayout>
-</layout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/my_nav"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="49dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
